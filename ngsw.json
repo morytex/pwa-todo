@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1579111068300,
+  "timestamp": 1579111286543,
   "index": "/pwa-todo/index.html",
   "assetGroups": [
     {
@@ -76,7 +76,7 @@
     "/pwa-todo/index.html": "70f84e1f2b2ec7ad86068212d8f6814b9b3ce0c0",
     "/pwa-todo/main-es2015.9c9773ad1be2d6c28f5d.js": "20d3ffcc2e5b9538bbf5ab2c71100d4884957875",
     "/pwa-todo/main-es5.9c9773ad1be2d6c28f5d.js": "f7590e991a75dd59194725f1458f4cd948ba20e4",
-    "/pwa-todo/manifest.webmanifest": "66d32978525c0145e0e21ecfb9250c0c061c3007",
+    "/pwa-todo/manifest.webmanifest": "8d04add9253ee26cfcdfc6e595a40c7a6b0c640d",
     "/pwa-todo/polyfills-es2015.2987770fde9daa1d8a2e.js": "cf5cbfa9134716054fb479ab21362146cdf1f2ff",
     "/pwa-todo/polyfills-es5.6696c533341b95a3d617.js": "6bff0c03e05bb347d213ad1b3674045eb892d189",
     "/pwa-todo/runtime-es2015.edb2fcf2778e7bf1d426.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
