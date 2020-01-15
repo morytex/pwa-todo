@@ -1,6 +1,6 @@
 {
-  "name": "PWATodo",
-  "short_name": "PWATodo",
+  "name": "pwa-todo",
+  "short_name": "pwa-todo",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",

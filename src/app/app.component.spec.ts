@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'PWATodo'`, () => {
+  it(`should have as title 'pwa-todo'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('PWATodo');
+    expect(app.title).toEqual('pwa-todo');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('PWATodo app is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain('pwa-todo app is running!');
   });
 });
