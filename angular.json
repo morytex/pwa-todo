@@ -132,6 +132,43 @@
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
           "options": {}
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/pwa-todo-server",
+            "main": "src/main.server.ts",
+            "tsConfig": "tsconfig.server.json"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "sourceMap": false,
+              "optimization": {
+                "scripts": false,
+                "styles": true
+              }
+            }
+          }
+        },
+        "app-shell": {
+          "builder": "@angular-devkit/build-angular:app-shell",
+          "options": {
+            "browserTarget": "pwa-todo:build",
+            "serverTarget": "pwa-todo:server",
+            "route": "shell"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "pwa-todo:build:production",
+              "serverTarget": "pwa-todo:server:production"
+            }
+          }
         }
       }
     }
