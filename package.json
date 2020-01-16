@@ -12,7 +12,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy:dev": "npm run build:app-shell:prod && http-server -p 4200 -c-1 dist/pwa-todo"
+    "deploy:dev": "npm run build:app-shell:prod && http-server -p 4200 -c-1 dist/pwa-todo",
+    "cypress:open": "cypress open",
+    "cypress": "concurrently \"npm run start\" \"npm run cypress:open\""
   },
   "private": true,
   "dependencies": {
@@ -43,6 +45,8 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
     "codelyzer": "^5.0.0",
+    "concurrently": "^5.0.2",
+    "cypress": "^3.8.2",
     "http-server": "^0.12.1",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
