@@ -13,33 +13,29 @@ import { PLATFORM_ID } from '@angular/core';
 export class AppComponent implements OnDestroy {
   title = 'pwa-todo';
 
-  mobileQuery: MediaQueryList;
+  viewportMobileQuery: MediaQueryList;
 
   fillerNav = Array.from({ length: 3 }, (_, i) => `Nav Item ${i + 1}`);
 
-  fillerContent = Array.from({ length: 3 }, () =>
+  fillerContent = Array.from({ length: 5 }, () =>
     `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`);
 
-  private customMobileQueryListener: () => void;
+  // tslint:disable-next-line: variable-name
+  private _viewportQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, iconRegistry: MatIconRegistry,
-    sanitizer: DomSanitizer, @Inject(PLATFORM_ID) platformId: string) {
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
-    this.customMobileQueryListener = () => changeDetectorRef.detectChanges();
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+    this.viewportMobileQuery = media.matchMedia('(max-width: 600px)');
+    this._viewportQueryListener = () => changeDetectorRef.detectChanges();
     // tslint:disable-next-line: deprecation
-    this.mobileQuery.addListener(this.customMobileQueryListener);
-
-    const svgUrl = 'assets/icons/menu-24px.svg';
-    const domain = (isPlatformServer(platformId)) ? 'http://localhost:4200/' : '';
-    iconRegistry.addSvgIcon('menu', sanitizer.bypassSecurityTrustResourceUrl(domain + svgUrl));
+    this.viewportMobileQuery.addListener(this._viewportQueryListener);
   }
 
   ngOnDestroy(): void {
     // tslint:disable-next-line: deprecation
-    this.mobileQuery.removeListener(this.customMobileQueryListener);
+    this.viewportMobileQuery.removeListener(this._viewportQueryListener);
   }
 }

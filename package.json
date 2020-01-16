@@ -12,7 +12,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy:dev": "npm run build:app-shell:prod && http-server -p 4200 -c-1 dist/pwa-todo"
+    "deploy:dev": "http-server -p 4200 -c-1 dist/pwa-todo"
   },
   "private": true,
   "dependencies": {

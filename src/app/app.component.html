@@ -1,20 +1,28 @@
-<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
-  <mat-toolbar color="primary" class="example-toolbar">
+<div class="app-container" [class.app-is-mobile]="viewportMobileQuery.matches">
+  <mat-toolbar color="primary" class="app-toolbar">
     <button mat-icon-button (click)="sidenav.toggle()">
-      <mat-icon color="accent" svgIcon="menu"></mat-icon>
+      <mat-icon color="accent">menu</mat-icon>
     </button>
     <h1 class="toolbar-app-name">PWA Todo</h1>
   </mat-toolbar>
 
-  <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
-    <mat-sidenav #sidenav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
+  <mat-sidenav-container class="app-sidenav-container" [style.marginTop.px]="viewportMobileQuery.matches ? 56 : 0">
+    <mat-sidenav #sidenav mode="over" [fixedInViewport]="viewportMobileQuery.matches" class="app-sidenav"
       fixedTopGap="56">
-      <mat-nav-list>
-        <a mat-list-item routerLink="." *ngFor="let nav of fillerNav">{{nav}}</a>
-      </mat-nav-list>
+      <div class="app-sidenav-menu">
+        <mat-nav-list>
+          <a mat-list-item routerLink="." *ngFor="let nav of fillerNav">{{nav}}</a>
+        </mat-nav-list>
+
+        <div><!-- Space between menu itens and installation promotion area --></div>
+
+        <div class="install-promotion">
+          <button mat-flat-button class="install-button">Install</button>
+        </div>
+      </div>
     </mat-sidenav>
 
-    <mat-sidenav-content class="example-sidenav-content">
+    <mat-sidenav-content class="app-sidenav-content">
       <router-outlet></router-outlet>
       <p *ngFor="let content of fillerContent">{{content}}</p>
     </mat-sidenav-content>
