@@ -16,8 +16,8 @@
 
         <div><!-- Space between menu itens and installation promotion area --></div>
 
-        <div class="install-promotion">
-          <button mat-flat-button class="install-button">Install</button>
+        <div class="install-promotion" *ngIf="showInstallation">
+          <button mat-flat-button class="install-button" (click)="addToHomeScreen()">Install</button>
         </div>
       </div>
     </mat-sidenav>

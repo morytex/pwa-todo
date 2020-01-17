@@ -1,9 +1,5 @@
-import { Component, OnDestroy, ChangeDetectorRef, Inject } from '@angular/core';
-import { MatIconRegistry } from '@angular/material';
-import { DomSanitizer } from '@angular/platform-browser';
+import { Component, OnDestroy, ChangeDetectorRef, HostListener } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { isPlatformServer } from '@angular/common';
-import { PLATFORM_ID } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +8,8 @@ import { PLATFORM_ID } from '@angular/core';
 })
 export class AppComponent implements OnDestroy {
   title = 'pwa-todo';
-
+  promptEvent: any;
+  showInstallation: boolean;
   viewportMobileQuery: MediaQueryList;
 
   fillerNav = Array.from({ length: 3 }, (_, i) => `Nav Item ${i + 1}`);
@@ -27,6 +24,16 @@ export class AppComponent implements OnDestroy {
   // tslint:disable-next-line: variable-name
   private _viewportQueryListener: () => void;
 
+  @HostListener('window:beforeinstallprompt', ['$event'])
+  onbeforeinstallprompt(e) {
+    console.log(e);
+    // Prevent Chrome 67 and earlier from automatically showing the prompt
+    e.preventDefault();
+    // Stash the event so it can be triggered later.
+    this.promptEvent = e;
+    this.showInstallation = true;
+  }
+
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
     this.viewportMobileQuery = media.matchMedia('(max-width: 600px)');
     this._viewportQueryListener = () => changeDetectorRef.detectChanges();
@@ -37,5 +44,19 @@ export class AppComponent implements OnDestroy {
   ngOnDestroy(): void {
     // tslint:disable-next-line: deprecation
     this.viewportMobileQuery.removeListener(this._viewportQueryListener);
+  }
+
+  addToHomeScreen() {
+    this.showInstallation = false;
+    this.promptEvent.prompt();
+    this.promptEvent.userChoice
+      .then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+          console.log('User accepted the A2HS prompt');
+        } else {
+          console.log('User dismissed the A2HS prompt');
+        }
+        this.promptEvent = null;
+      });
   }
 }
